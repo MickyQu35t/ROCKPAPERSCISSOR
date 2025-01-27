@@ -19,9 +19,7 @@ def intro():
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░                ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░                ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
  ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░ 
-                                                                                                                        
-                                                                                                                        
-                                                                                                     
+                                                                                                
 
     """)
 
@@ -55,7 +53,9 @@ def cpudecision():
   elif cpuguess==3:
     print("CPU: SCISSORS!!")
     time.sleep(2)
-    intro()
+    return None
+
+  return cpuguess
 
 
 # PLayer decision definition
@@ -74,14 +74,31 @@ def playerdecision():
     print("WRONG CHOICE, PLAY AGAIN!!")
     print("IN 2 Seconds!!")
     time.sleep(2)
-    intro()
+    return None
+
+  return playerguess
 
 
 # FUNCTION TO COMPARE AND DECIDE WINNER
-def winnerdecider():
-  if playerguess==1 and cpudecision==1:
+def winnerdecider(playerguess,cpuguess):
+  if playerguess==cpuguess:
     print("MATCH DRAW")
-  # elif playerguess==2 and cpudecision
+  elif playerguess==1 and cpuguess==2:
+    print("CPU WINS")
+    intro()
+  elif playerguess==2 and cpuguess==3:
+    print("CPU WINS")
+    intro()
+  elif playerguess==3 and cpuguess==1:
+    print("CPU WINS")
+    intro()
+  else:
+    print("PLAYER WINS!!")
+    print("Play again in 2 Seconds!!")
+    time.sleep(2)
+    intro()
+
+  
 
 
 
@@ -90,8 +107,4 @@ def winnerdecider():
 # Call the intro function to display the interface
 intro()
 playerdecision()
-
-
-
-
-
+winnerdecider()
