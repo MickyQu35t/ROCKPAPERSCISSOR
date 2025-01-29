@@ -4,6 +4,7 @@
 import time
 import random
 
+
 def intro():
     # Clear the screen
     print("\033c", end="")  # For Windows, use: os.system('cls') (import os)
@@ -24,7 +25,7 @@ def intro():
     """)
 
     # Wait for a few seconds for effect
-    time.sleep(2)
+    time.sleep(1)
 
     # Welcome Message
     print("\nWelcome to the Rock, Paper, Scissors Game!\n")
@@ -52,9 +53,8 @@ def cpudecision():
     print("CPU: PAPER!!")
   elif cpuguess==3:
     print("CPU: SCISSORS!!")
-    time.sleep(2)
-    return None
-
+    time.sleep(1)
+  
   return cpuguess
 
 
@@ -63,48 +63,43 @@ def playerdecision():
   playerguess=int(input())
   if playerguess==1:
     print("PLayer: ROCK!!")
-    cpudecision()
   elif playerguess==2:
     print("PLayer: PAPER!!")
-    cpudecision()
   elif playerguess==3:
     print("PLayer: SCISSORS!!")
-    cpudecision()
   else:
     print("WRONG CHOICE, PLAY AGAIN!!")
     print("IN 2 Seconds!!")
     time.sleep(2)
-    return None
-
+    
   return playerguess
 
 
 # FUNCTION TO COMPARE AND DECIDE WINNER
-def winnerdecider(playerguess,cpuguess):
+def winnerdecider(cpuguess, playerguess):
+  # cpuguess = cpudecision()
+  # playerguess = playerdecision()
   if playerguess==cpuguess:
     print("MATCH DRAW")
-  elif playerguess==1 and cpuguess==2:
+  elif (playerguess==1 and cpuguess==2) or (playerguess==2 and cpuguess==3) or (playerguess==3 and cpuguess==1):
     print("CPU WINS")
-    intro()
-  elif playerguess==2 and cpuguess==3:
-    print("CPU WINS")
-    intro()
-  elif playerguess==3 and cpuguess==1:
-    print("CPU WINS")
-    intro()
   else:
     print("PLAYER WINS!!")
     print("Play again in 2 Seconds!!")
     time.sleep(2)
-    intro()
-
-  
 
 
+# DEFINITION OF THE FLOW OF THE GAME
+def gameplay():
+  intro()
+  playerguess = playerdecision()
+  cpuguess = cpudecision()
+  # playerdecision()
+  winnerdecider(cpuguess, playerguess)
 
 
 
-# Call the intro function to display the interface
-intro()
-playerdecision()
-winnerdecider()
+
+
+# Call the gameplay function to start the game
+gameplay()
